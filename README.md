@@ -5,7 +5,7 @@ This script enables you to run any executable files in proton environment.
 Please note that proton is highly unstable for simpler or older games (renpy, rpg maker etc). For that purpose I recommend usual wine.
 
 ## Installation
-Requires Python 3.11, Steam, Steam Linux Runtime installed via Steam, Proton installed via Steam or AUR
+Requires Python 3.11, Steam, Steam Linux Runtime installed via Steam, Proton installed via Steam.
 
 Tested in Arch Linux and Ubuntu with XFCE. Both snap and direct installation of steam supported.
 
@@ -16,7 +16,8 @@ Tested in Arch Linux and Ubuntu with XFCE. Both snap and direct installation of 
 1. Search for the sniper/runtime path (e.g. `$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/run`) and edit it. Append `cat /proc/$$/environ > $HOME/my-proton-tools/dumpenvs_sniper` on the top.
 2. Start a steam app via proton, and get its pid.
 3. `cat /proc/[pid of the game]/environ > $HOME/my-proton-tools/dumpenvs_exe`
-4. (optional) Create a prefix file.
+4. Create a prefix file, or copy an example prefix file from the `example_presets` directory (which has different prefix files depending on whether Steam is directly installed or installed via snap).
+   Guide on how to create a prefix file:
     1. Run this program once and generate `dumpenvs_EXE_keys_values` and `dumpenvs_SNIPER_keys_values`
     2. Copy `dumpenvs_EXE_keys_values`/`dumpenvs_SNIPER_keys_values` and rename them to something else.
     3. In the copied files, replace string values next to the keys with 'v', 'p', 'c' or 'd' or delete the line, so that we can successfully load the environment variables required to run wine.
