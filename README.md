@@ -11,7 +11,7 @@ Tested in Arch Linux and Ubuntu with XFCE. Both snap and direct installation of 
 
 ## Instruction
 
-`my-proton.py` is the main script. You need to generate `dumpenvs` before running it. The following instruction supposes that this tool is placed in `$HOME/my-proton-tools`.
+`my-proton.py` is the main script. You need to generate `dumpenvs` before running it. The following instruction supposes that this tool is placed in `$HOME/my-proton-tools`. If Steam is installed via snap, every command should be run in the `snap run --shell steam` shell environment.
 
 1. Search for the sniper/runtime path (e.g. `$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/run`) and edit it. Append `cat /proc/$$/environ > $HOME/my-proton-tools/dumpenvs_sniper` on the top.
 2. Start a steam app via proton, and get its pid.
