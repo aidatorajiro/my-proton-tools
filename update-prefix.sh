@@ -5,9 +5,6 @@ SAMPLEAPPID=1720850
 
 cd ~/wineprefix
 
-# copy compatdata to wineprefix
-cp -r "$HOME/.local/share/Steam/steamapps/compatdata/$SAMPLEAPPID/" "$1"
-
 # for safety, copy windows files rather than linking them
 rm -rf "$1/pfx/drive_c/windows"
 cp -Lr "$HOME/.local/share/Steam/steamapps/compatdata/$SAMPLEAPPID/pfx/drive_c/windows" "$1/pfx/drive_c/windows"
