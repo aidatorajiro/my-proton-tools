@@ -12,7 +12,7 @@ cp -r "$HOME/.local/share/Steam/steamapps/compatdata/$SAMPLEAPPID/" "$1"
 rm -rf "$1/pfx/drive_c/windows"
 cp -Lr "$HOME/.local/share/Steam/steamapps/compatdata/$SAMPLEAPPID/pfx/drive_c/windows" "$1/pfx/drive_c/windows"
 
-echo "#!/bin/bash\n~/my-proton-tools/my-proton.py $1 -r \"\$@\"" > "$1-run.sh"
-echo "#!/bin/bash\n~/my-proton-tools/my-proton.py $1 \"\$@\"" > "$1.sh"
+echo -e "#!/bin/bash\n~/my-proton-tools/my-proton.py $1 -r \"\$@\"" > "$1-run.sh"
+echo -e "#!/bin/bash\n~/my-proton-tools/my-proton.py $1 \"\$@\"" > "$1.sh"
 
 chmod +x $1-run.sh $1.sh

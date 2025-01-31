@@ -13,7 +13,9 @@ Tested in Arch Linux and Ubuntu with XFCE. Both snap and direct installation of 
 
 `my-proton.py` is the main script. You need to generate `dumpenvs` before running it. The following instruction supposes that this tool is placed in `$HOME/my-proton-tools`. If Steam is installed via snap, every command should be run in the `snap run --shell steam` shell environment.
 
-1. Search for the sniper/runtime path (e.g. `$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/run`) and edit it. Append `cat /proc/$$/environ > $HOME/my-proton-tools/dumpenvs_sniper` on the top.
+1. Search for the sniper/runtime path and edit it. It uses entrypoint V2 by default. Specify `--runtime` commandline argument to override entrypoint and Steam Linux Runtime version.
+  1. Entrypoint V1: Append `cat /proc/$$/environ > $HOME/my-proton-tools/dumpenvs_sniper_v1` to `$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/run`
+  2. Entrypoint V2: Append `cat /proc/$$/environ > $HOME/my-proton-tools/dumpenvs_sniper` to `$HOME/.local/share/Steam/steamapps/common/SteamLinuxRuntime_sniper/_v2-entry-point`
 2. Start a steam app via proton, and get its pid.
 3. `cat /proc/[pid of the game]/environ > $HOME/my-proton-tools/dumpenvs_exe`
 4. Create prefix files, or copy example prefix files (`preset_sniper_wide` and `preset_exe_wide`) from the `example_presets` directory, which has different prefix files depending on whether Steam is directly installed or installed via snap.  
@@ -32,28 +34,5 @@ Tested in Arch Linux and Ubuntu with XFCE. Both snap and direct installation of 
 5. `mkdir $HOME/wineprefix`
 6. Run `create-prefix.sh` to safely create a new proton environment. (Please edit `SAMPLEAPPID` to specify the steam game id that you have previously played and is a windows-only game)
 
-You can change proton version by specifying --proton and --runtime simultaneously. Also, if you use multiple proton versions, please dump different dumpenv files for different proton versions, and change `-s` and `-e` accordingly.
+You can change proton version by specifying `--proton` and `--runtime` simultaneously. Also, if you use multiple proton versions / runtime versions / runtime entrypoint executables, please dump different dumpenv files, and change `-s` and `-e` accordingly.
 
-## Usage
-
-```
-usage: Simple Proton wrapper [-h] [-p PRESET] [-l LANG] [--runtime RUNTIME] [--proton PROTON]
-                             [--dumpenvs DUMPENVS] [-r]
-                             prefixname [args ...]
-
-This program allows you to run any exe files in a custom wine prefix. 
-
-positional arguments:
-  prefixname            The name of wineprefix. The wineprefix should be placed at `~/wineprefix/[wineprefix name]`
-  args                  Args to be passed on wine or executed directly
-
-options:
-  -h, --help            show this help message and exit
-  -p PRESET, --preset PRESET
-                        path to the preset file, relative to this script.
-  -l LANG, --lang LANG  wine language
-  --runtime RUNTIME     Specify steam linux runtime container executable path relative to steamapps.
-  --proton PROTON       Specify Proton Version as the path relative to steamapps.
-  --dumpenvs DUMPENVS   Specify path to dumped env file (by copying /proc/xxx/environ).
-  -r                    execute raw command such as `winetricks` or `wineserver -k`
-```
