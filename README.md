@@ -4,6 +4,14 @@ This script enables you to run any executable files in proton environment.
 
 Please note that proton is highly unstable for simpler or older games (renpy, rpg maker etc). For that purpose I recommend usual wine.
 
+## Memo: other related softwares
+
+Here is another launcher program which seems to be more sophisticated: <https://github.com/Open-Wine-Components/umu-launcher>  
+
+Unlike above one, `my-proton-tools` uses existing Steam system (the Proton and the containment mechanics such as `sniper`).
+
+Here is a custom build of Proton: <https://github.com/GloriousEggroll/proton-ge-custom>  
+
 ## Installation
 Requires Python 3.11, Steam, Steam Linux Runtime installed via Steam, Proton installed via Steam.
 
@@ -36,3 +44,4 @@ Tested in Arch Linux and Ubuntu with XFCE. Both snap and direct installation of 
 
 You can change proton version by specifying `--proton` and `--runtime` simultaneously. Also, if you use multiple proton versions / runtime versions / runtime entrypoint executables, please dump different dumpenv files, and change `-s` and `-e` accordingly.
 
+You can use any kind of Proton build (such as `proton-ge-custom`) by specifying arguments like `--prefix ../../../../../.steam/root/compatibilitytools.d/GE-Proton9-26`. Just remember to set the Proton version via Steam settings and follow all the instructions above, creating separate `dumpenvs_*` files.
